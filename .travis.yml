@@ -1,6 +1,6 @@
-#sudo: false
+sudo: false
 
-#language: java
+language: java
 
 jdk: oraclejdk8
 
@@ -8,11 +8,8 @@ cache:
   directories:
   - $HOME/.m2
 
-before_script:
+before_install:
   - git config user.name "$COMMIT_AUTHOR_NAME"
   - git config user.email "$COMMIT_AUTHOR_EMAIL"
   - export COMMIT_MESSAGE=`git log -1 --oneline`
-
-script:
   - cp .travis.settings.xml $HOME/.m2/settings.xml
-  - ./mvnw clean install
